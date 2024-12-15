@@ -2,10 +2,10 @@ use collisions::collisions;
 
 use crate::prelude::*;
 
+mod collisions;
+mod entity_render;
 mod map_render;
 mod player_input;
-mod entity_render;
-mod collisions;
 
 pub fn build_scheduler() -> Schedule {
     Schedule::builder()
@@ -15,4 +15,3 @@ pub fn build_scheduler() -> Schedule {
         .add_system(entity_render::entity_render_system())
         .build()
 }
-
