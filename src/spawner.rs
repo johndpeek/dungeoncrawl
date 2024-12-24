@@ -1,6 +1,6 @@
 use bracket_lib::{
     color::{ColorPair, BLACK},
-    prelude::{to_char, to_cp437},
+    prelude::to_cp437,
 };
 
 use crate::prelude::*;
@@ -29,5 +29,6 @@ pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Poin
                 _ => to_cp437('g'),
             },
         },
+        MovingRandomly{}
     ));
 }
