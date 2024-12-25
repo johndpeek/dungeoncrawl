@@ -1,4 +1,4 @@
-use crate::{prelude::*, turn_state::{self, TurnState}};
+use crate::{prelude::*, turn_state::TurnState};
 
 #[system]
 #[read_component(Point)]
