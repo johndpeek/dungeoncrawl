@@ -11,6 +11,7 @@ mod end_turn;
 mod movement;
 mod hud;
 mod tooltips;
+mod combat;
 
 pub fn build_scheduler() -> Schedule {
     Schedule::builder()
