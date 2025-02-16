@@ -30,10 +30,9 @@ pub fn player_input(
             .unwrap();
 
         let mut did_something = false;
-
         if delta.x !=0 || delta.y !=0 {
-            let mut hit_something = false;
 
+            let mut hit_something = false;
             enemies
                 .iter(ecs)
                 .filter(|(_, pos) | {
@@ -48,6 +47,7 @@ pub fn player_input(
                             victim: *entity,
                         }));
                 });
+
             if !hit_something {
                 did_something = true;
                 commands
@@ -56,6 +56,7 @@ pub fn player_input(
                         destination
                     }));
             }
+        };
         if !did_something {
             if let Ok(health) = ecs
                 .entry_mut(player_entity)
@@ -64,7 +65,6 @@ pub fn player_input(
             {
                 health.current = i32::min(health.max, health.current+1);
             }
-        }
         }
         *turn_state = TurnState::PlayerTurn;
     }
