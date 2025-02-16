@@ -17,6 +17,6 @@ pub fn map_render(#[resource] map: &Map, #[resource] camera: &Camera) {
                 draw_batch.set(pt - offset, ColorPair::new(WHITE, BLACK), glyph);
             }
         }
-        draw_batch.submit(0).expect("BatchError");
     }
+    draw_batch.submit(0).expect("BatchError");
 }

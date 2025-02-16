@@ -1,6 +1,3 @@
-// use end_turn::end_turn;
-// use random_move::random_move;
-
 use crate::prelude::*;
 
 mod map_render;
@@ -13,7 +10,7 @@ mod hud;
 mod tooltips;
 mod combat;
 
-pub fn build_scheduler() -> Schedule {
+pub fn build_input_scheduler() -> Schedule {
     Schedule::builder()
         .add_system(player_input::player_input_system())
         .flush()
@@ -52,14 +49,3 @@ pub fn build_monster_scheduler() -> Schedule {
         .add_system(end_turn::end_turn_system())
         .build()
 }
-
-pub fn build_input_scheduler() -> Schedule {
-    Schedule::builder()
-        .add_system(player_input::player_input_system())
-        .flush()
-        .add_system(map_render::map_render_system())
-        .add_system(entity_render::entity_render_system())
-        .add_system(hud::hud_system())
-        .add_system(tooltips::tooltips_system())
-        .build()
-    }

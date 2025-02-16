@@ -1,8 +1,3 @@
-use bracket_lib::{
-    color::{ColorPair, BLACK},
-    prelude::to_cp437,
-};
-
 use crate::prelude::*;
 
 pub fn spawn_player(ecs: &mut World, pos: Point) {
@@ -25,19 +20,21 @@ pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Poin
     
     ecs.push(
         (Enemy,
-        pos,
-        Render {
-            color: ColorPair::new(WHITE, BLACK),
-            glyph,
+            pos,
+            Render {
+                color: ColorPair::new(WHITE, BLACK),
+                glyph,
             },
-        MovingRandomly{},
-        Health{current: hp, max: hp},
-        Name(name)
-    ));
-    fn goblin() -> (i32, String, FontCharType) {
-        (1, "Goblin".to_string(), to_cp437('g'))
-    }
-    fn orc() -> (i32, String, FontCharType) {
-        (2, "Orc".to_string(), to_cp437('o'))
-    }
+            MovingRandomly{},
+            Health{current: hp, max: hp},
+            Name(name)
+        )
+    );
 }
+fn goblin() -> (i32, String, FontCharType) {
+    (1, "Goblin".to_string(), to_cp437('g'))
+}
+fn orc() -> (i32, String, FontCharType) {
+    (2, "Orc".to_string(), to_cp437('o'))
+}
+

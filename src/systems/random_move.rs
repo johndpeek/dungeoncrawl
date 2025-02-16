@@ -1,7 +1,7 @@
 use crate::prelude::*;
 
 #[system]
-#[write_component(Point)]
+#[read_component(Point)]
 #[read_component(MovingRandomly)]
 #[read_component(Health)]
 #[read_component(Player)]
@@ -23,8 +23,7 @@ pub fn random_move(ecs: &mut SubWorld, commands: &mut CommandBuffer) {
                 .iter(ecs)
                 .filter(|(_, target_pos, _)| **target_pos == destination)
                 .for_each(|(victim, _, _)| {
-                    if ecs.entry_ref(*victim)
-                    .unwrap().get_component::<Player>().is_ok()
+                    if ecs.entry_ref(*victim).unwrap().get_component::<Player>().is_ok()
                     {
                         commands
                             .push(((), WantsToAttack{
@@ -34,8 +33,9 @@ pub fn random_move(ecs: &mut SubWorld, commands: &mut CommandBuffer) {
                     }
                     attacked = true;
                 });
+        if !attacked {
             commands
                 .push(((), WantsToMove{entity: *entity, destination}));
         }
-    );
+    });
 }

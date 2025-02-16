@@ -6,7 +6,7 @@ pub fn movement(
     entity: &Entity,
     want_move: &WantsToMove,
     #[resource] map: &Map,
-    #[resource] camera: & mut Camera,
+    #[resource] camera: &mut Camera,
     ecs: &mut SubWorld,
     commands: &mut CommandBuffer
 ) {
@@ -19,6 +19,6 @@ pub fn movement(
         {
             camera.on_player_move(want_move.destination);
         }
-    commands.remove(*entity)
     }
+    commands.remove(*entity);
 }

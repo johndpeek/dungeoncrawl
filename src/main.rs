@@ -40,8 +40,7 @@ impl State {
         let mut rng = RandomNumberGenerator::new();
         let map_builder = MapBuilder::new(&mut rng);
         spawn_player(&mut ecs, map_builder.player_start);
-        map_builder
-            .rooms
+        map_builder.rooms
             .iter()
             .skip(1)
             .map(|r| r.center())
@@ -52,7 +51,7 @@ impl State {
         Self {
             ecs,
             resources,
-            input_systems: build_scheduler(),
+            input_systems: build_input_scheduler(),
             player_systems: build_player_scheduler(),
             monster_systems: build_monster_scheduler(),
         }
@@ -80,11 +79,10 @@ impl GameState for State {
                 self.player_systems.execute(&mut self.ecs, &mut self.resources);
             }
             TurnState::MonsterTurn => {
-                self.monster_systems.execute(&mut self.ecs,&mut self.resources);
+                self.monster_systems.execute(&mut self.ecs,&mut self.resources)
             }
         }
         render_draw_buffer(ctx).expect("RenderError");
-        // todo render draw buffer
     }
 }
 
