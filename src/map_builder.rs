@@ -76,6 +76,12 @@ impl MapBuilder {
             player_start: Point::zero(),
             amulet_start: Point::zero(),
         };
+
+        mb.fill(TileType::Wall);
+        mb.build_random_rooms(rng);
+        mb.build_corridors(rng);
+        mb.player_start = mb.rooms[0].center();
+        
         let dijkstra_map = DijkstraMap::new(
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
@@ -83,11 +89,8 @@ impl MapBuilder {
             &mb.map,
             1024.0
         );
-        mb.fill(TileType::Wall);
-        mb.build_random_rooms(rng);
-        mb.build_corridors(rng);
-        mb.player_start = mb.rooms[0].center();
         const UNREACHABLE : &f32 = &f32::MAX;
+        // mb.amulet_start = mb.rooms[0].center();
         mb.amulet_start = mb.map.index_to_point2d(
             dijkstra_map.map
                     .iter()

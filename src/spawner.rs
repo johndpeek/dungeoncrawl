@@ -8,7 +8,7 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
             color: ColorPair::new(WHITE, BLACK),
             glyph: to_cp437('@'),
         },
-        Health{current: 5, max: 5}
+        Health{current: 20, max: 20}
     ));
 }
 
@@ -37,11 +37,12 @@ pub fn spawn_monster(
 }
 pub fn spawn_amulet_of_power(ecs: &mut World, pos : Point) {
     ecs.push(
-        (Item, AmuletofPower,
+        (Item, 
+            AmuletofPower,
             pos,
             Render {
                 color: ColorPair::new(WHITE, BLACK),
-                glyph: to_cp437('/')
+                glyph: to_cp437('|')
             },
             Name("Amulet of Power".to_string())
         )
