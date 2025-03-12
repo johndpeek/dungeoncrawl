@@ -27,3 +27,11 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+    - name: Download release artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: <my-app>
+        path: ./<my-app>
+    - name: Publish built binary to GitHub releases
+    - run: |
+        gh release create --generate-notes ./<my-app>/<my-project>#<my-app>
