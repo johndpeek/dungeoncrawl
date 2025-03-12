@@ -74,7 +74,7 @@ impl State {
         ctx.set_active_console(2);
         ctx.print_color_centered(2, GREEN, BLACK, "Victory is yours!");
         ctx.print_color_centered(4, WHITE, BLACK, "You've acquired the Amulet of Power!");
-        ctx.print_color_centered(5, WHITE, BLACK, "You feel it's power course through your veins");
+        ctx.print_color_centered(5, WHITE, BLACK, "You feel its power course through your veins");
         ctx.print_color_centered(9, GREEN, BLACK, "Press 1 to try again");
 
         if let Some(VirtualKeyCode::Key1) = ctx.key {
@@ -124,12 +124,8 @@ impl GameState for State {
             TurnState::MonsterTurn => {
                 self.monster_systems.execute(&mut self.ecs,&mut self.resources)
             }
-            TurnState::GameOver => {
-                self.game_over(ctx);
-            }
-            TurnState::Victory => {
-                self.victory(ctx);
-            }
+            TurnState::GameOver => self.game_over(ctx),
+            TurnState::Victory => self.victory(ctx),
         }
         render_draw_buffer(ctx).expect("RenderError");
     }

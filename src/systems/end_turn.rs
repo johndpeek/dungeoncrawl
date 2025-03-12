@@ -12,7 +12,7 @@ pub fn end_turn(
 ) {
     let mut player_hp = <(&Health, &Point)>::query().filter(component::<Player>());
     let mut amulet = <&Point>::query()
-        .filter(component::<Player>());
+        .filter(component::<AmuletofPower>());
     let amulet_pos = amulet
         .iter(ecs)
         .nth(0)
