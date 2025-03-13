@@ -27,7 +27,7 @@ jobs:
     - name: Compile and release
       uses: rust-build/rust-build.action@v1.4.5
       with:
-        targets: ${{ matrix.target }}
+        RUSTTARGET: ${{ matrix.target }}
     - name: Get the release version from the tag
       shell: bash
       run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
