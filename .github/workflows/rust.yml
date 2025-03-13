@@ -32,7 +32,7 @@ jobs:
       shell: bash
       run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
     - name: Build
-      uses: actions-rs/cargo@v1
+      uses: actions-rs/cargo@v4
       with:
         use-cross: true
         command: build
