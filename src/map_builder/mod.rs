@@ -1,11 +1,9 @@
-use core::arch;
 use automata::CellularAutomataArchitect;
 use drunkard::DrunkardsWalkArchitect;
 use prefab::apply_prefab;
 use rooms::RoomsArchitect;
 use themes::*;
 use crate::prelude::*;
-use empty::EmptyArchitect;
 
 mod empty;
 mod rooms;

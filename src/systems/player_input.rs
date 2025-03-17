@@ -1,5 +1,3 @@
-use std::ops::Sub;
-
 use crate::prelude::*;
 
 #[system]
@@ -75,7 +73,7 @@ pub fn player_input(
                 });
 
             if !hit_something {
-                did_something = true;
+                // did_something = true;
                 commands
                     .push(((), WantsToMove{
                         entity: player_entity,
