@@ -8,15 +8,17 @@ use crate::prelude::*;
 
 pub fn end_turn(
     ecs: &SubWorld,
-    #[resource] turn_state: &mut TurnState
+    #[resource] turn_state: &mut TurnState,
+    #[resource] map: &Map
 ) {
     let mut player_hp = <(&Health, &Point)>::query().filter(component::<Player>());
     let mut amulet = <&Point>::query()
         .filter(component::<AmuletofPower>());
+    let amulet_default = Point::new(-1,-1);
     let amulet_pos = amulet
         .iter(ecs)
         .nth(0)
-        .unwrap();
+        .unwrap_or(&amulet_default);
     let current_state = turn_state.clone();
     let mut new_state = match turn_state {
     TurnState::AwaitingInput => return,
@@ -30,6 +32,10 @@ pub fn end_turn(
         }
         if pos == amulet_pos {
             new_state = TurnState::Victory;
+        }
+        let idx = map.point2d_to_index(*pos);
+        if map.tiles[idx] == TileType::Exit {
+            new_state = TurnState::NextLevel;
         }
     });
     *turn_state = new_state;
